@@ -1,1 +1,1 @@
-"Calculadora feta amb Android Studio (en Java)" 
+Calculadora feta amb Android Studio (en Java)
