@@ -9,7 +9,7 @@
     tools:context=".MainActivity">
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/resultTextView"
         android:layout_width="369dp"
         android:layout_height="95dp"
         android:background="#0B0A0A"
@@ -18,13 +18,15 @@
         android:textColor="#FFFFFF"
         android:textSize="60sp"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.037" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/sinBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
@@ -32,40 +34,47 @@
         android:backgroundTint="#BF7C18"
         android:text="sin"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        app:layout_constraintTop_toBottomOf="@+id/resultTextView"
+        tools:ignore="TextContrastCheck" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/cosBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="6dp"
         android:backgroundTint="#BF7C18"
         android:text="cos"
-        app:layout_constraintStart_toEndOf="@+id/button"
-        app:layout_constraintTop_toTopOf="@+id/button" />
+        app:layout_constraintStart_toEndOf="@+id/sinBtn"
+        app:layout_constraintTop_toTopOf="@+id/sinBtn"
+        tools:ignore="TextContrastCheck" />
 
     <Button
-        android:id="@+id/button3"
+        android:id="@+id/tanBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="6dp"
         android:backgroundTint="#BF7C18"
         android:text="tan"
-        app:layout_constraintStart_toEndOf="@+id/button2"
-        app:layout_constraintTop_toTopOf="@+id/button2" />
+        app:layout_constraintStart_toEndOf="@+id/cosBtn"
+        app:layout_constraintTop_toTopOf="@+id/cosBtn"
+        tools:ignore="TextContrastCheck" />
 
     <Button
-        android:id="@+id/button4"
+        android:id="@+id/clearBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="6dp"
+        android:layout_marginEnd="25dp"
         android:backgroundTint="#D64B1F"
         android:text="CLEAR"
-        app:layout_constraintStart_toEndOf="@+id/button3"
-        app:layout_constraintTop_toTopOf="@+id/button3" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/tanBtn"
+        app:layout_constraintTop_toTopOf="@+id/tanBtn"
+        tools:ignore="TextContrastCheck" />
 
     <Button
-        android:id="@+id/button9"
+        android:id="@+id/btn7"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
@@ -74,32 +83,32 @@
         android:text="7"
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button" />
+        app:layout_constraintTop_toBottomOf="@+id/sinBtn" />
 
     <Button
-        android:id="@+id/button10"
+        android:id="@+id/btn8"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="6dp"
         android:backgroundTint="#453F3F"
         android:text="8"
         android:textSize="20sp"
-        app:layout_constraintStart_toEndOf="@+id/button9"
-        app:layout_constraintTop_toTopOf="@+id/button9" />
+        app:layout_constraintStart_toEndOf="@+id/btn7"
+        app:layout_constraintTop_toTopOf="@+id/btn7" />
 
     <Button
-        android:id="@+id/button11"
+        android:id="@+id/btn9"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="6dp"
         android:backgroundTint="#453F3F"
         android:text="9"
         android:textSize="20sp"
-        app:layout_constraintStart_toEndOf="@+id/button10"
-        app:layout_constraintTop_toTopOf="@+id/button10" />
+        app:layout_constraintStart_toEndOf="@+id/btn8"
+        app:layout_constraintTop_toTopOf="@+id/btn8" />
 
     <Button
-        android:id="@+id/button12"
+        android:id="@+id/btn4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
@@ -108,32 +117,32 @@
         android:text="4"
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button9" />
+        app:layout_constraintTop_toBottomOf="@+id/btn7" />
 
     <Button
-        android:id="@+id/button13"
+        android:id="@+id/btn5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="6dp"
         android:backgroundTint="#453F3F"
         android:text="5"
         android:textSize="20sp"
-        app:layout_constraintStart_toEndOf="@+id/button12"
-        app:layout_constraintTop_toTopOf="@+id/button12" />
+        app:layout_constraintStart_toEndOf="@+id/btn4"
+        app:layout_constraintTop_toTopOf="@+id/btn4" />
 
     <Button
-        android:id="@+id/button14"
+        android:id="@+id/btn6"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="6dp"
         android:backgroundTint="#453F3F"
         android:text="6"
         android:textSize="20sp"
-        app:layout_constraintStart_toEndOf="@+id/button13"
-        app:layout_constraintTop_toTopOf="@+id/button13" />
+        app:layout_constraintStart_toEndOf="@+id/btn5"
+        app:layout_constraintTop_toTopOf="@+id/btn5" />
 
     <Button
-        android:id="@+id/button15"
+        android:id="@+id/btn1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
@@ -142,65 +151,74 @@
         android:text="1"
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button12" />
+        app:layout_constraintTop_toBottomOf="@+id/btn4" />
 
     <Button
-        android:id="@+id/button16"
+        android:id="@+id/btn2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="6dp"
         android:backgroundTint="#453F3F"
         android:text="2"
         android:textSize="20sp"
-        app:layout_constraintStart_toEndOf="@+id/button15"
-        app:layout_constraintTop_toTopOf="@+id/button15" />
+        app:layout_constraintStart_toEndOf="@+id/btn1"
+        app:layout_constraintTop_toTopOf="@+id/btn1" />
 
     <Button
-        android:id="@+id/button17"
+        android:id="@+id/btn3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="6dp"
         android:backgroundTint="#453F3F"
         android:text="3"
         android:textSize="20sp"
-        app:layout_constraintStart_toEndOf="@+id/button16"
-        app:layout_constraintTop_toTopOf="@+id/button16" />
+        app:layout_constraintStart_toEndOf="@+id/btn2"
+        app:layout_constraintTop_toTopOf="@+id/btn2" />
 
     <Button
-        android:id="@+id/button18"
+        android:id="@+id/divBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="6dp"
-        android:backgroundTint="#AA6C10"
+        android:layout_marginEnd="25dp"
+        android:backgroundTint="#C88521"
         android:text="/"
         android:textSize="20sp"
-        app:layout_constraintStart_toEndOf="@+id/button11"
-        app:layout_constraintTop_toTopOf="@+id/button11" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.032"
+        app:layout_constraintStart_toEndOf="@+id/btn9"
+        app:layout_constraintTop_toTopOf="@+id/btn9" />
 
     <Button
-        android:id="@+id/button19"
+        android:id="@+id/multBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="6dp"
-        android:backgroundTint="#AA6C10"
+        android:layout_marginEnd="25dp"
+        android:backgroundTint="#C88521"
         android:text="*"
         android:textSize="20sp"
-        app:layout_constraintStart_toEndOf="@+id/button14"
-        app:layout_constraintTop_toTopOf="@+id/button14" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.225"
+        app:layout_constraintStart_toEndOf="@+id/btn6"
+        app:layout_constraintTop_toTopOf="@+id/btn6" />
 
     <Button
-        android:id="@+id/button20"
+        android:id="@+id/resBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="6dp"
-        android:backgroundTint="#AA6C10"
+        android:layout_marginEnd="25dp"
+        android:backgroundTint="#C88521"
         android:text="-"
         android:textSize="20sp"
-        app:layout_constraintStart_toEndOf="@+id/button17"
-        app:layout_constraintTop_toTopOf="@+id/button17" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/btn3"
+        app:layout_constraintTop_toTopOf="@+id/btn3" />
 
     <Button
-        android:id="@+id/button21"
+        android:id="@+id/btn0"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
@@ -209,10 +227,11 @@
         android:text="0"
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button15" />
+        app:layout_constraintTop_toBottomOf="@+id/btn1"
+        tools:ignore="DuplicateSpeakableTextCheck" />
 
     <Button
-        android:id="@+id/button22"
+        android:id="@+id/comaBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="6dp"
@@ -220,41 +239,46 @@
         android:text=","
         android:textAlignment="center"
         android:textSize="20sp"
-        app:layout_constraintStart_toEndOf="@+id/button21"
-        app:layout_constraintTop_toTopOf="@+id/button21" />
+        app:layout_constraintStart_toEndOf="@+id/btn0"
+        app:layout_constraintTop_toTopOf="@+id/btn0" />
 
     <Button
-        android:id="@+id/button23"
+        android:id="@+id/eqBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="6dp"
         android:backgroundTint="#E44D1E"
         android:text="="
         android:textSize="20sp"
-        app:layout_constraintStart_toEndOf="@+id/button22"
-        app:layout_constraintTop_toTopOf="@+id/button22" />
+        app:layout_constraintStart_toEndOf="@+id/comaBtn"
+        app:layout_constraintTop_toTopOf="@+id/comaBtn" />
 
     <Button
-        android:id="@+id/button24"
+        android:id="@+id/sumBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="6dp"
-        android:backgroundTint="#AA6C10"
+        android:layout_marginEnd="25dp"
+        android:backgroundTint="#C88521"
         android:text="+"
         android:textSize="20sp"
-        app:layout_constraintStart_toEndOf="@+id/button23"
-        app:layout_constraintTop_toTopOf="@+id/button23" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/eqBtn"
+        app:layout_constraintTop_toTopOf="@+id/eqBtn" />
 
     <Switch
-        android:id="@+id/switch1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:background="#504A4A"
-        android:backgroundTint="#474242"
-        android:text="  Rad  "
+        android:id="@+id/radSW"
+        android:layout_width="93dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="20dp"
+        android:background="#4E4747"
+        android:backgroundTint="#423E3E"
+        android:text="  Rad"
+        android:textAlignment="center"
         android:textColor="#FFFFFF"
-        app:layout_constraintTop_toBottomOf="@+id/button24"
-        tools:layout_editor_absoluteX="305dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/sumBtn" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
