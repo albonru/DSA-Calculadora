@@ -3,487 +3,181 @@ package com.example.calculadora;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.CompoundButton;
-import android.widget.Switch;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
-    public String n1 = "";
-    public double num1 = 0;
-    public String n2 = "";
-    public double num2 = 0;
-    public boolean pendingOp = false;
-    public String op = "";
-    public double result = 0;
-    public boolean radians = false;
-    public String trigonometry ="";
+    Double firstNum, secondNum, result;
+
+    Boolean add, res, div, mult;
+    Boolean tan, sin, cos;
+    Boolean operation; //pending operation
+
+    Button btn0, btn1, btn2, btn3, btn4, btn5, btn6, btn7, btn8, btn9;
+    Button sumBtn, resBtn, multBtn, divBtn;
+    Button clearBtn, eqBtn;
+    Button sinBtn, cosBtn, tanBtn;
+
+    TextView resultTextView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Button btn0 = (Button) findViewById(R.id.btn0);
-        btn0.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                TextView resultTextView = (TextView) findViewById(R.id.resultTextView);
-                if(pendingOp) {
-                    n2 = n2 + "0";
-                    resultTextView.setText(n1 + op + trigonometry + n2);
-                }
-                else {
-                    n1 = n1 + "0";
-                    resultTextView.setText(trigonometry + n1 + op + n2);
-                }
-            }
-        });
+        // button initialization
+        btn0 = (Button) findViewById(R.id.btn0);
+        btn0.setOnClickListener((View.OnClickListener) this);
+        btn1 = (Button) findViewById(R.id.btn1);
+        btn1.setOnClickListener((View.OnClickListener) this);
+        btn2 = (Button) findViewById(R.id.btn2);
+        btn2.setOnClickListener((View.OnClickListener) this);
+        btn3 = (Button) findViewById(R.id.btn3);
+        btn3.setOnClickListener((View.OnClickListener) this);
+        btn4 = (Button) findViewById(R.id.btn4);
+        btn4.setOnClickListener((View.OnClickListener) this);
+        btn5 = (Button) findViewById(R.id.btn5);
+        btn5.setOnClickListener((View.OnClickListener) this);
+        btn6 = (Button) findViewById(R.id.btn6);
+        btn6.setOnClickListener((View.OnClickListener) this);
+        btn7 = (Button) findViewById(R.id.btn7);
+        btn7.setOnClickListener((View.OnClickListener) this);
+        btn8 = (Button) findViewById(R.id.btn8);
+        btn8.setOnClickListener((View.OnClickListener) this);
+        btn9 = (Button) findViewById(R.id.btn9);
+        btn9.setOnClickListener((View.OnClickListener) this);
 
-        Button btn1 = (Button) findViewById(R.id.btn1);
-        btn1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                TextView resultTextView = (TextView) findViewById(R.id.resultTextView);
-                if(pendingOp) {
-                    n2 = n2 + "1";
-                    resultTextView.setText(n1 + op + trigonometry + n2);
-                }
-                else {
-                    n1 = n1 + "1";
-                    resultTextView.setText(trigonometry + n1 + op + n2);
-                }
-            }
-        });
+        sumBtn = findViewById(R.id.sumBtn);
+        sumBtn.setOnClickListener((View.OnClickListener) this);
+        resBtn = findViewById(R.id.resBtn);
+        resBtn.setOnClickListener((View.OnClickListener) this);
+        multBtn = findViewById(R.id.multBtn);
+        multBtn.setOnClickListener((View.OnClickListener) this);
+        divBtn = findViewById(R.id.divBtn);
+        divBtn.setOnClickListener((View.OnClickListener) this);
+        clearBtn = findViewById(R.id.clearBtn);
+        clearBtn.setOnClickListener((View.OnClickListener) this);
+        eqBtn = findViewById(R.id.eqBtn);
+        eqBtn.setOnClickListener((View.OnClickListener) this);
+        tanBtn = findViewById(R.id.tanBtn);
+        tanBtn.setOnClickListener((View.OnClickListener) this);
+        sinBtn = findViewById(R.id.sinBtn);
+        sinBtn.setOnClickListener((View.OnClickListener) this);
+        cosBtn = findViewById(R.id.cosBtn);
+        cosBtn.setOnClickListener((View.OnClickListener) this);
 
-        Button btn2 = (Button) findViewById(R.id.btn2);
-        btn2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                TextView resultTextView = (TextView) findViewById(R.id.resultTextView);
-                if(pendingOp) {
-                    n2 = n2 + "2";
-                    resultTextView.setText(n1 + op + trigonometry + n2);
-                }
-                else {
-                    n1 = n1 + "2";
-                    resultTextView.setText(trigonometry + n1 + op + n2);
-                }
-            }
-        });
-
-        Button btn3 = (Button) findViewById(R.id.btn3);
-        btn3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                TextView resultTextView = (TextView) findViewById(R.id.resultTextView);
-                if(pendingOp) {
-                    n2 = n2 + "3";
-                    resultTextView.setText(n1 + op + trigonometry + n2);
-                }
-                else {
-                    n1 = n1 + "3";
-                    resultTextView.setText(trigonometry + n1 + op + n2);
-                }
-            }
-        });
-
-        Button btn4 = (Button) findViewById(R.id.btn4);
-        btn4.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                TextView resultTextView = (TextView) findViewById(R.id.resultTextView);
-                if(pendingOp) {
-                    n2 = n2 + "4";
-                    resultTextView.setText(n1 + op + trigonometry + n2);
-                }
-                else {
-                    n1 = n1 + "4";
-                    resultTextView.setText(trigonometry + n1 + op + n2);
-                }
-            }
-        });
-
-        Button btn5 = (Button) findViewById(R.id.btn5);
-        btn5.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                TextView resultTextView = (TextView) findViewById(R.id.resultTextView);
-                if(pendingOp) {
-                    n2 = n2 + "5";
-                    resultTextView.setText(n1 + op + trigonometry + n2);
-                }
-                else {
-                    n1 = n1 + "5";
-                    resultTextView.setText(trigonometry + n1 + op + n2);
-                }
-            }
-        });
-
-        Button btn6 = (Button) findViewById(R.id.btn6);
-        btn6.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                TextView resultTextView = (TextView) findViewById(R.id.resultTextView);
-                if(pendingOp) {
-                    n2 = n2 + "6";
-                    resultTextView.setText(n1 + op + trigonometry + n2);
-                }
-                else {
-                    n1 = n1 + "6";
-                    resultTextView.setText(trigonometry + n1 + op + n2);
-                }
-            }
-        });
-
-        Button btn7 = (Button) findViewById(R.id.btn7);
-        btn7.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                TextView resultTextView = (TextView) findViewById(R.id.resultTextView);
-                if(pendingOp) {
-                    n2 = n2 + "7";
-                    resultTextView.setText(n1 + op + trigonometry + n2);
-                }
-                else {
-                    n1 = n1 + "7";
-                    resultTextView.setText(trigonometry + n1 + op + n2);
-                }
-            }
-        });
-
-        Button btn8 = (Button) findViewById(R.id.btn8);
-        btn8.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                TextView resultTextView = (TextView) findViewById(R.id.resultTextView);
-                if(pendingOp) {
-                    n2 = n2 + "8";
-                    resultTextView.setText(n1 + op + trigonometry + n2);
-                }
-                else {
-                    n1 = n1 + "8";
-                    resultTextView.setText(trigonometry + n1 + op + n2);
-                }
-            }
-        });
-
-        Button btn9 = (Button) findViewById(R.id.btn9);
-        btn9.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                TextView resultTextView = (TextView) findViewById(R.id.resultTextView);
-                if(pendingOp) {
-                    n2 = n2 + "9";
-                    resultTextView.setText(n1 + op + trigonometry + n2);
-                }
-                else {
-                    n1 = n1 + "9";
-                    resultTextView.setText(trigonometry + n1 + op + n2);
-                }
-            }
-        });
-
-        Button sumBtn = (Button) findViewById(R.id.sumBtn);
-        sumBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (pendingOp) {
-                    num1 = Double.parseDouble(n1);
-                    num2 = Double.parseDouble(n2);
-                    switch(op) {
-                        case "+":
-                            result = num1 + num2;
-                            break;
-                        case "-":
-                            result = num1 - num2;
-                            break;
-                        case "*":
-                            result = num1 * num2;
-                            break;
-                        case "/":
-                            result = num1 / num2;
-                            break;
-                    }
-                    num1 = result;
-                    n1 = Double.toString(num1);
-                    n2 = "";
-                }
-                else
-                    pendingOp = true;
-                op = "+";
-                TextView resultTextView = (TextView) findViewById(R.id.resultTextView);
-                resultTextView.setText(n1 + op + n2);
-            }
-        });
-
-        Button resBtn = (Button) findViewById(R.id.resBtn);
-        resBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (pendingOp) {
-                    num1 = Double.parseDouble(n1);
-                    num2 = Double.parseDouble(n2);
-                    switch(op) {
-                        case "+":
-                            result = num1 + num2;
-                            break;
-                        case "-":
-                            result = num1 - num2;
-                            break;
-                        case "*":
-                            result = num1 * num2;
-                            break;
-                        case "/":
-                            result = num1 / num2;
-                            break;
-                    }
-                    num1 = result;
-                    n1 = Double.toString(num1);
-                    n2 = "";
-                }
-                else
-                    pendingOp = true;
-                op = "-";
-                TextView resultTextView = (TextView) findViewById(R.id.resultTextView);
-                resultTextView.setText(n1 + op + n2);
-            }
-        });
-
-        Button divBtn = (Button) findViewById(R.id.divBtn);
-        divBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (pendingOp) {
-                    num1 = Double.parseDouble(n1);
-                    num2 = Double.parseDouble(n2);
-                    switch(op) {
-                        case "+":
-                            result = num1 + num2;
-                            break;
-                        case "-":
-                            result = num1 - num2;
-                            break;
-                        case "*":
-                            result = num1 * num2;
-                            break;
-                        case "/":
-                            result = num1 / num2;
-                            break;
-                    }
-                    num1 = result;
-                    n1 = Double.toString(num1);
-                    n2 = "";
-                }
-                else
-                    pendingOp = true;
-                op = "/";
-                TextView resultTextView = (TextView) findViewById(R.id.resultTextView);
-                resultTextView.setText(n1 + op + n2);
-            }
-        });
-
-        Button multBtn = (Button) findViewById(R.id.multBtn);
-        multBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (pendingOp) {
-                    num1 = Double.parseDouble(n1);
-                    num2 = Double.parseDouble(n2);
-
-                    switch(trigonometry) {
-                        case "sin":
-                            if (radians)
-                                num2 = Math.sin(num2);
-                            else
-                                num2 = Math.sin(num2* ((2*Math.PI)/365));
-                            trigonometry = "";
-                            break;
-                        case "cos":
-                            if (radians)
-                                num2 = Math.cos(num2);
-                            else
-                                num2 = Math.cos(num2* ((2*Math.PI)/365));
-                            trigonometry = "";
-                            break;
-                        case "tan":
-                            if (radians)
-                                num2 = Math.tan(num2);
-                            else
-                                num2 = Math.tan(num2* ((2*Math.PI)/365));
-                            trigonometry = "";
-                            break;
-                        default:
-                            num2 = num2;
-                            break;
-                    }
-
-                    switch(op) {
-                        case "+":
-                            result = num1 + num2;
-                            break;
-                        case "-":
-                            result = num1 - num2;
-                            break;
-                        case "*":
-                            result = num1 * num2;
-                            break;
-                        case "/":
-                            result = num1 / num2;
-                            break;
-                    }
-                    num1 = result;
-                    n1 = Double.toString(num1);
-                    n2 = "";
-                    op = "*";
-
-                    TextView resultTextView = (TextView) findViewById(R.id.resultTextView);
-                    resultTextView.setText(n1 + op + n2);
-                }
-                else {
-                    switch (trigonometry) {
-                        case "sin":
-                            if (radians)
-                                result = Math.sin(num1);
-                            else
-                                result = Math.sin(num1 * ((2 * Math.PI) / 360));
-                            trigonometry = "";
-                            break;
-                        case "cos":
-                            if (radians)
-                                result = Math.cos(num1);
-                            else
-                                result = Math.cos(num1 * ((2 * Math.PI) / 360));
-                            trigonometry = "";
-                            break;
-                        case "tan":
-                            if (radians)
-                                result = Math.tan(num1);
-                            else
-                                result = Math.tan(num1 * ((2 * Math.PI) / 360));
-                            trigonometry = "";
-                            break;
-                        default:
-                            result = num1;
-                            break;
-                    }
-                    num1 = result;
-                    n1 = Double.toString(num1);
-                    pendingOp = true;
-                    op = "*";
-                    TextView resultTextView = (TextView) findViewById(R.id.resultTextView);
-                    resultTextView.setText(trigonometry + n1 + op + n2);
-                }
-            }
-        });
-
-        Button eqBtn = (Button) findViewById(R.id.eqBtn);
-        eqBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                num1 = Double.parseDouble(n1);
-                num2 = Double.parseDouble(n2);
-                switch(op) {
-                    case "+":
-                        result = num1 + num2;
-                        break;
-                    case "-":
-                        result = num1 - num2;
-                        break;
-                    case "*":
-                        result = num1 * num2;
-                        break;
-                    case "/":
-                        result = num1 / num2;
-                        break;
-                }
-                TextView resultTextView = (TextView) findViewById(R.id.resultTextView);
-                resultTextView.setText(result + "");
-                n1 = "";
-                n2 = "";
-                num1 = 0;
-                num2 = 0;
-                pendingOp = false;
-                result = 0;
-                op = "";
-            }
-        });
-
-        Button sinBtn = (Button) findViewById(R.id.sinBtn);
-        sinBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                trigonometry = "sin";
-                TextView resultTextView = (TextView) findViewById(R.id.resultTextView);
-                resultTextView.setText(trigonometry);
-            }
-        });
-
-        Button cosBtn = (Button) findViewById(R.id.cosBtn);
-        cosBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                trigonometry = "cos";
-                TextView resultTextView = (TextView) findViewById(R.id.resultTextView);
-                resultTextView.setText(trigonometry);
-            }
-        });
-
-        Button tanBtn = (Button) findViewById(R.id.tanBtn);
-        tanBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                trigonometry = "tan";
-                TextView resultTextView = (TextView) findViewById(R.id.resultTextView);
-                resultTextView.setText(trigonometry);
-            }
-        });
-
-        Button comaBtn = (Button) findViewById(R.id.comaBtn);
-        comaBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                TextView resultTextView = (TextView) findViewById(R.id.resultTextView);
-                if(pendingOp) {
-                    n2 = n2 + ".";
-                    resultTextView.setText(n1 + op + trigonometry + n2);
-                }
-                else {
-                    n1 = n1 + ".";
-                    resultTextView.setText(trigonometry + n1 + op + n2);
-                }
-            }
-        });
-
-        Button clearBtn = (Button) findViewById(R.id.clearBtn);
-        clearBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                num1 = 0;
-                num2 = 0;
-                n1 = "";
-                n2 = "";
-                pendingOp = false;
-                result = 0;
-                op = "";
-                trigonometry = "";
-                TextView resultTextView = (TextView) findViewById(R.id.resultTextView);
-                resultTextView.setText(result + "");
-            }
-        });
-
-        Switch radSw = (Switch) findViewById(R.id.radSW);
-        radSw.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
-                if (isChecked)
-                    radians = true;
-                else
-                    radians = false;
-            }
-        });
+        // textview initialization
+        resultTextView = (TextView) findViewById(R.id.resultTextView);
+        resultTextView.setText("");
     }
 
+        @Override
+        public void onClick(View view) {
+            String x = resultTextView.getText().toString();
+            Button btn = (Button) view;
+
+            try{
+                switch (btn.getId()) {
+                    case R.id.btn0:
+                        resultTextView.setText(x + "0");
+                        break;
+                    case R.id.btn1:
+                        resultTextView.setText(x + "1");
+                        break;
+                    case R.id.btn2:
+                        resultTextView.setText(x + "2");
+                        break;
+                    case R.id.btn3:
+                        resultTextView.setText(x + "3");
+                        break;
+                    case R.id.btn4:
+                        resultTextView.setText(x + "4");
+                        break;
+                    case R.id.btn5:
+                        resultTextView.setText(x + "5");
+                        break;
+                    case R.id.btn6:
+                        resultTextView.setText(x + "6");
+                        break;
+                    case R.id.btn7:
+                        resultTextView.setText(x + "7");
+                        break;
+                    case R.id.btn8:
+                        resultTextView.setText(x + "8");
+                        break;
+                    case R.id.btn9:
+                        resultTextView.setText(x + "9");
+                        break;
+                    case R.id.clearBtn:
+                        resultTextView.setText("");
+                        break;
+                    case R.id.sumBtn:
+                        add = true;
+                        firstNum=Double.parseDouble(x);
+                        resultTextView.setText(String.valueOf(x + "+"));
+                        break;
+                    case R.id.resBtn:
+                        res = true;
+                        firstNum=Double.parseDouble(x);
+                        resultTextView.setText(String.valueOf(x + "-"));
+                        break;
+                    case R.id.multBtn:
+                        mult = true;
+                        firstNum=Double.parseDouble(x);
+                        resultTextView.setText(String.valueOf(x + "*"));
+                        break;
+                    case R.id.divBtn:
+                        div = true;
+                        firstNum=Double.parseDouble(x);
+                        resultTextView.setText(String.valueOf(x + "/"));
+                        break;
+                    case R.id.cosBtn:
+                        firstNum= Double.parseDouble(x);
+                        resultTextView.setText(String.valueOf("cos " + firstNum));
+                        result = Math.cos(firstNum  * Math.PI/180);
+                        resultTextView.setText(String.valueOf(result));
+                        break;
+                    case R.id.sinBtn:
+                        firstNum= Double.parseDouble(x);
+                        resultTextView.setText("sin " + firstNum));
+                        result = Math.sin(firstNum * Math.PI/180);
+                        resultTextView.setText(String.valueOf(result));
+                        break;
+                    case R.id.tanBtn:
+                        firstNum= Double.parseDouble(x);
+                        resultTextView.setText(String.valueOf("tan " + firstNum));
+                        result = Math.tan(firstNum * Math.PI/180);
+                        resultTextView.setText(String.valueOf(result));
+                        break;
+                    case R.id.eqBtn:
+                        secondNum = Double.parseDouble(x);
+                        if(add){
+                            resultTextView.setText(String.valueOf(firstNum + "+" + secondNum));
+                            result = firstNum + secondNum;
+                            resultTextView.setText(String.valueOf(result));
+                        }else if (res){
+                            resultTextView.setText(String.valueOf(firstNum + "-" + secondNum));
+                            result = firstNum - secondNum;
+                            resultTextView.setText(String.valueOf(result));
+                        }else if (mult){
+                            resultTextView.setText(String.valueOf(firstNum + "*" + secondNum));
+                            result = firstNum * secondNum;
+                            resultTextView.setText(String.valueOf(result));
+                        }else if (div){
+                            resultTextView.setText(String.valueOf(firstNum + "/" + secondNum));
+                            result = firstNum / secondNum;
+                            resultTextView.setText(String.valueOf(result));
+                        }
+                        add = false;
+                        res = false;
+                        mult = false;
+                        div = false;
+                        break;
+                }
+            }catch (Exception e){
+                resultTextView.setText("ERROR");
+            }
+        }
 }
